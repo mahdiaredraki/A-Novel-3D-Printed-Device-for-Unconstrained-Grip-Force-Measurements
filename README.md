@@ -3,9 +3,7 @@
 This repository contains the source code for the paper "A Novel 3D-Printed Device for Unconstrained Grip Force Measurements: Design and Validation in Human Experiments". This paper has been submitted to IEEE Transactions on Haptics.
 
 ## Setup Tutorial
-[Click here](https://a.co/d/btdwUGS) to view a step-by-step tutorial covering how to assemble and calibrate the device.
-
-[![Alt text](https://img.youtube.com/vi/QZQDN8Vwpl8&ab_channel=MahdiarEdraki/0.jpg)](https://www.https://www.youtube.com/watch?v=QZQDN8Vwpl8&ab_channel=MahdiarEdraki)
+[Click here](https://youtu.be/mO2cDpScyKs) to view a step-by-step tutorial covering how to assemble and calibrate the device.
 
 ## Software
 ### Calibration and Programming of Arduino
@@ -14,7 +12,7 @@ The code to calibrate and program the arduino are provided in the [**Grip Sensor
 A README file is provided in the folder, explaining the steps to calibrate and program the device.
 
 ### Data Collection through MATLAB and C++
-The code to record device data using MATLAB and C++ are provided in the [(https://github.com/mahdiaredraki/A-Novel-3D-Printed-Device-for-Unconstrained-Grip-Force-Measurements/tree/main/**Grip Sensor Code/MATLAB**](https://github.com/mahdiaredraki/A-Novel-3D-Printed-Device-for-Unconstrained-Grip-Force-Measurements/tree/main/Grip%20Sensor%20Code/MATLAB) and [**Grip Sensor Code/C++**](https://github.com/mahdiaredraki/A-Novel-3D-Printed-Device-for-Unconstrained-Grip-Force-Measurements/tree/main/Grip%20Sensor%20Code/C%2B%2B) folders, respectively.
+The code to record device data using MATLAB and C++ are provided in the [**Grip Sensor Code/MATLAB**](https://github.com/mahdiaredraki/A-Novel-3D-Printed-Device-for-Unconstrained-Grip-Force-Measurements/tree/main/Grip%20Sensor%20Code/MATLAB) and [**Grip Sensor Code/C++**](https://github.com/mahdiaredraki/A-Novel-3D-Printed-Device-for-Unconstrained-Grip-Force-Measurements/tree/main/Grip%20Sensor%20Code/C%2B%2B) folders, respectively.
 
 ## Hardware
 * [Arduino Nano](https://a.co/d/btdwUGS)
