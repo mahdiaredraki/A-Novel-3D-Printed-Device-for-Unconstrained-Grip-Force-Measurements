@@ -4,6 +4,7 @@
 #define CLK  2
 
 HX711 scale;
+float myData = 0.0;
 
 void setup() {
   Serial.begin(9600);
@@ -13,7 +14,7 @@ void setup() {
 }
 
 void loop() {
-  myData = round(scale.get_units());//scale.get_units() returns a float
+  myData = scale.get_units();//scale.get_units() returns a float
   Serial.print('N');
   Serial.println(myData); 
 }
