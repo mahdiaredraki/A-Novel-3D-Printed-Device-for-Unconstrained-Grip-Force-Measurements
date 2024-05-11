@@ -1,11 +1,11 @@
-clear all; close all; clc; echo off;
+clear; close all; clc; echo off;
 
 %% User defined
-save_data=1;
-plot_data_in_real_Time=0;
-FileName="Sample_GripSensor_Data";
+Save_Data=false; 
+Plot_Data_in_Real_Time=true; % Set to false to maximize sampling rate.
+File_Name="Sample_GripSensor_Data";
 Data_Collection_Duration = 60; %in seconds, = Inf for infinite duration
-ARDUINO=serialport("COM6",9600);
+Arduino_Port = 6; % Obtain port number from Arduino IDE e.g "COM6" = 6
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                            %
@@ -14,60 +14,64 @@ ARDUINO=serialport("COM6",9600);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Initialize Grip Sensor
-fig = figure;
-setappdata(fig, 'output', 0);
-setappdata(fig, 'time_now', now);
-configureCallback(ARDUINO,"byte",10,@(src, event)getData(src, fig))
+Grip_Sensor=serialport("COM"+Arduino_Port,9600);
+fig = figure('WindowState','minimized');
+pause(0.1);
+setappdata(fig, 'Grip_force', 0);
+Time = datetime('now');
+Time = Time.Hour*3600+Time.Minute*60+Time.Second;
+setappdata(fig, 'Time', Time);
+configureCallback(Grip_Sensor,"byte",10,@(src, event)getData(src, fig))
+pause(0.2)
 
 %% Read output from Grip Sensor
-FIG=figure(2);
-set(gcf,'Position',[482 230 1392 601])
-hold on
-grid on
-title("Grip Sensor")
-ylabel("Force (N)")
-xlabel("Time (s)")
+h=figure(2);
+set(gcf,'Position',[755 396 936 419])
+hold on; grid on
+ylabel("Grip Force"); xlabel("Time (s)")
 yline(0,'linewidth',2,'color','black');
 set(gca,'fontsize',25,'fontweight','bold')
 
-Continuous_Time = [];
-Grip_Sensor_Output = [];
-Start_Time =getappdata(fig,'time_now');
+Time = [0;0]; Grip_Force = [0;0];
+Start_Time =getappdata(fig,'Time');
 
-while Continuous_Time(end)<Data_Collection_Duration
-    Grip_Sensor_Output = [Grip_Sensor_Output; getappdata(fig,'output')];
-    Continuous_Time=[Continuous_Time; getappdata(fig,'time_now')-Start_Time];
-    if plot_data_in_real_Time==1
-        scatter(Continuous_Time,Grip_Sensor_Output,100,'blue','filled')
-        xlim([Continuous_Time(end)-20 Continuous_Time(end)+5]);
+%% Loop for user specified duration
+while Time(end)<Data_Collection_Duration && ishandle(h)
+    Grip_Force = [Grip_Force; getappdata(fig,'Grip_Force')];
+    Time=[Time; getappdata(fig,'Time')-Start_Time];
+    if Plot_Data_in_Real_Time
+        plot(Time(end-1:end),Grip_Force(end-1:end),'LineWidth',2,'Marker','o','MarkerFaceColor','blue','color','blue')
+        xlim([Time(end)-20 Time(end)+5]);
+        title("Grip Force = "+round(Grip_Force(end),2))
         drawnow
+        pause(1/80)
     else
         pause(1/30) % Set the sampling rate
     end
 end
 
-if plot_data_in_real_Time==0
-    plot(Continuous_Time,Grip_Sensor_Output,'color','blue','linewidth',2)
+if ~Plot_Data_in_Real_Time
+    plot(Time,Grip_Force,'color','blue','linewidth',2)
 end
 
 %% Disconnect Arduino
-configureCallback(ARDUINO,"off")
-clear ARDUINO
+configureCallback(Grip_Sensor,"off")
+clear Grip_Sensor
 
 %% Save Data
-if save_data == 1
-    save(FileName+".mat",'Grip_Sensor_Output','Continuous_Time')
+if Save_Data
+    save(File_Name+".mat",'Grip_Force','Time')
 end
 
 %% Local Function
 function getData(src, fig)
     O(1) = readline(src);
     O(2) = readline(src);
-    Output = str2double(extractAfter(O(2),1));
+    Arduino_Output = str2double(extractAfter(O(2),1));
     flush(src)
     Time = datetime('now');
     Time = Time.Hour*3600+Time.Minute*60+Time.Second;
-    setappdata(fig,'output',Output)
-    setappdata(fig,'time_now',Time)
+    setappdata(fig,'Grip_Force',Arduino_Output)
+    setappdata(fig,'Time',Time)
 end
 
