@@ -5,6 +5,8 @@ This repository contains the source code for the paper "A Novel 3D-Printed Devic
 ## Setup Tutorial
 [Click here](https://a.co/d/btdwUGS) to view a step-by-step tutorial covering how to assemble and calibrate the device.
 
+[![Alt text](https://img.youtube.com/vi/QZQDN8Vwpl8&ab_channel=MahdiarEdraki/0.jpg)](https://www.https://www.youtube.com/watch?v=QZQDN8Vwpl8&ab_channel=MahdiarEdraki)
+
 ## Software
 ### Calibration and Programming of Arduino
 The code to calibrate and program the arduino are provided in the [**Grip Sensor Code/Arduino**](https://github.com/mahdiaredraki/A-Novel-3D-Printed-Device-for-Unconstrained-Grip-Force-Measurements/tree/main/Grip%20Sensor%20Code/Arduino) folder. 
