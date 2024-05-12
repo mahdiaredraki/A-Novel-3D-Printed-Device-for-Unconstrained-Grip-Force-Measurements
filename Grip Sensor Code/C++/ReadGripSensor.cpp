@@ -28,7 +28,7 @@ int main(){
 	while (true) {
 		// Measure grip force
 		auto dataAndTime = arduino_reader.getSerialData();
-		int serialData = dataAndTime.first;
+		double serialData = dataAndTime.first;
         double elapsed = dataAndTime.second;
 		cout << elapsed << "," << serialData << endl;
 		myfile << elapsed << "," << serialData << endl;

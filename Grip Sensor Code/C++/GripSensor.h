@@ -18,7 +18,7 @@ public:
 
 private:
     SerialPort& arduino; // Reference to the SerialPort
-    int serialData; // Integer to store serial data
+    double serialData; // Integer to store serial data
 	double tareOffset; // Double to store tare offset
     double elapsed; // Double to store elapsed time
     std::mutex mtx; // Mutex for controlling access to shared data

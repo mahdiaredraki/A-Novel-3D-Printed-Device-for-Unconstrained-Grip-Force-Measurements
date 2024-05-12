@@ -52,7 +52,7 @@ void GripSensor::readSerial(SerialPort& arduino) {
             if (index1 >= 0 && index2 > index1) {
                 int length = index2 - index1 - 1;
                 std::lock_guard<std::mutex> lock(mtx); // Lock the mutex for safe data update
-                serialData = std::stoi(std::string(output + index1 + 1, length)); // Convert to int and store
+                serialData = std::stod(std::string(output + index1 + 1, length)); // Convert to int and store
 				serialData -= tareOffset; // Apply tare offset to the reading
             } else {
                 std::cout << "invalid indexes" << std::endl;
@@ -62,7 +62,6 @@ void GripSensor::readSerial(SerialPort& arduino) {
         auto currentTime = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> elapsedSeconds = currentTime - programStartTime;
         elapsed = elapsedSeconds.count();
-        //std::cout << elapsed << "," << serialData << std::endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(10)); // Sleep before the next read
     }
 }
