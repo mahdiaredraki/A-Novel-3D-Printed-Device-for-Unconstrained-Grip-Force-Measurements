@@ -1,6 +1,6 @@
 <img src="Images/Cover Photo.png" alt="Cover Photo" width="\linewidth"/>
 
-This repository contains the source code for the paper "A Novel 3D-Printed Device for Unconstrained Grip Force Measurements: Design and Validation in Human Experiments". This paper has been submitted to IEEE Transactions on Haptics.
+This repository contains the source code for the paper "A Novel 3D-Printed Device for Unconstrained Grip Force Measurements: Design and Application in a Human Experiment". This paper has been submitted to IEEE Transactions on Haptics.
 
 ## Setup Tutorial
 [Click here](https://youtu.be/9uq_tFdBbcg?si=LtT3Q0BiFbUa_C0i) to view a step-by-step tutorial covering how to assemble and calibrate the device.
